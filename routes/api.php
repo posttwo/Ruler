@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/conduit', 'API\UtilController@whoami');
+Route::middleware('auth')->get('/conduit', 'API\UtilController@whoami');
