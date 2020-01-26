@@ -1927,10 +1927,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      info: null
+      info: null,
+      showJson: false
     };
   },
   mounted: function mounted() {
@@ -37333,7 +37335,21 @@ var render = function() {
                 _vm._v(" "),
                 _c("h2", [_vm._v(_vm._s(_vm.info.data.userName))]),
                 _vm._v(" "),
-                _c("pre", [_vm._v(_vm._s(_vm.info.data))])
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.showJson = !_vm.showJson
+                      }
+                    }
+                  },
+                  [_vm._v("Toggle JSON")]
+                ),
+                _vm._v(" "),
+                _vm.showJson
+                  ? _c("pre", [_vm._v(_vm._s(_vm.info.data))])
+                  : _vm._e()
               ]
         ],
         2

@@ -10,7 +10,8 @@
                 <template v-else>
                     <img :src="info.data.image" class="img-fluid"/>
                     <h2>{{info.data.userName}}</h2>
-                    <pre>{{info.data}}</pre>
+                    <button v-on:click="showJson = !showJson">Toggle JSON</button>
+                    <pre v-if="showJson">{{info.data}}</pre>
                 </template>
             </div>
         </div>
@@ -21,7 +22,8 @@
     export default {
         data() {
             return {
-                info: null
+                info: null,
+                showJson: false
             }
         },
         mounted() {
