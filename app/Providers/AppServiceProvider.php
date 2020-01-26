@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use BeyondCode\Mailbox\Facades\Mailbox;
+use App\Workers\MailboxWorker;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Mailbox::fallback(MailboxWorker::class);
     }
 }

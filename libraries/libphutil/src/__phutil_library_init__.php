@@ -21,7 +21,7 @@ function __phutil_autoload($class_name) {
       ->setName($class_name)
       ->selectAndLoadSymbols();
 
-    if (!$symbols) {
+    /*if (!$symbols) {
       throw new PhutilMissingSymbolException(
         $class_name,
         pht('class or interface'),
@@ -29,7 +29,7 @@ function __phutil_autoload($class_name) {
           'The class or interface "%s" is not defined in the library '.
           'map of any loaded library.',
           $class_name));
-    }
+    }*/
   } catch (PhutilMissingSymbolException $ex) {
     $should_throw = true;
 
