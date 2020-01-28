@@ -33,6 +33,10 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+        Route::bind('webhook_secret', function ($value) {
+            return \App\Webhook::where('secret', $value)->firstOrFail();
+        });
+
     }
 
     /**

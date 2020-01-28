@@ -18,3 +18,10 @@ Route::middleware('auth')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth')->get('/conduit', 'API\UtilController@whoami');
+
+//Webhooks
+Route::group(['middleware' => 'auth', 'prefix' => 'webhook'], function () {
+    Route::get('/', 'API\WebhookController@index');
+    Route::get('/{webhook}/invocation', 'API\WebhookController@indexInvocations');
+    Route::post('/', 'API\WebhookController@store');
+});
