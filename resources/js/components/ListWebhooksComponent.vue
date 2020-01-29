@@ -13,28 +13,30 @@
                         Loading..
                     </template>
                     <template v-else>
-                        <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Secret</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Creation</th>
-                            <th scope="col">Tools</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <template v-for="webhook in data.data">
+                        <div class="table-responsive">
+                            <table class="table">
+                            <thead>
                                 <tr>
-                                    <th scope="row">{{webhook.id}}</th>
-                                    <td>{{webhook.secret}}</td>
-                                    <td>{{webhook.type}}</td>
-                                    <td>{{webhook.created_at}}</td>
-                                    <td><a href="#" @click.prevent="getinvocations(webhook.id)">Invocations</a></td>
+                                <th scope="col">#</th>
+                                <th scope="col">Secret</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Creation</th>
+                                <th scope="col">Tools</th>
                                 </tr>
-                            </template>
-                        </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                                <template v-for="webhook in data.data">
+                                    <tr>
+                                        <th scope="row">{{webhook.id}}</th>
+                                        <td>{{webhook.secret}}</td>
+                                        <td>{{webhook.type}}</td>
+                                        <td>{{webhook.created_at}}</td>
+                                        <td><a href="#" @click.prevent="getinvocations(webhook.id)">Invocations</a></td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                            </table>
+                        </div>
                     </template>
                 </div>
             </div>
@@ -63,7 +65,7 @@
                                 <tr>
                                     <th scope="row">{{invocation.id}}</th>
                                     <td>{{invocation.status}}</td>
-                                    <td>{{invocation.head}}</td>
+                                    <td><pre style="max-width: 100px; max-height: 30px;">{{invocation.head}}</pre></td>
                                     <td><pre>{{invocation.body}}</pre></td>
                                     <td>{{invocation.created_at}}</td>
                                 </tr>

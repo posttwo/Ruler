@@ -26,7 +26,7 @@ class WebhookController extends Controller
         $data = $request->validate([
             'type' => [
                 'required',
-                Rule::in(['GenericWebhookProcessor']),
+                Rule::in(['GenericWebhookProcessor', 'TicketWebhookProcessor']),
             ]
         ]);
 

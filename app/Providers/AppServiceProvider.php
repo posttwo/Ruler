@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use BeyondCode\Mailbox\Facades\Mailbox;
 use App\Workers\MailboxWorker;
+use App\WebhookInvocation;
+use App\Observers\WebhookInvocationObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+        WebhookInvocation::observe(WebhookInvocationObserver::class);
     }
 }

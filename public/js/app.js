@@ -2035,6 +2035,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2106,6 +2108,9 @@ __webpack_require__.r(__webpack_exports__);
       options: [{
         text: "Generic Webhook",
         value: "GenericWebhookProcessor"
+      }, {
+        text: "Ticket Webhook",
+        value: "TicketWebhookProcessor"
       }]
     };
   },
@@ -37588,46 +37593,48 @@ var render = function() {
             _vm.data == null
               ? [_vm._v("\n                    Loading..\n                ")]
               : [
-                  _c("table", { staticClass: "table" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      [
-                        _vm._l(_vm.data.data, function(webhook) {
-                          return [
-                            _c("tr", [
-                              _c("th", { attrs: { scope: "row" } }, [
-                                _vm._v(_vm._s(webhook.id))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(webhook.secret))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(webhook.type))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(webhook.created_at))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.getinvocations(webhook.id)
+                  _c("div", { staticClass: "table-responsive" }, [
+                    _c("table", { staticClass: "table" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        [
+                          _vm._l(_vm.data.data, function(webhook) {
+                            return [
+                              _c("tr", [
+                                _c("th", { attrs: { scope: "row" } }, [
+                                  _vm._v(_vm._s(webhook.id))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(webhook.secret))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(webhook.type))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(webhook.created_at))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.getinvocations(webhook.id)
+                                        }
                                       }
-                                    }
-                                  },
-                                  [_vm._v("Invocations")]
-                                )
+                                    },
+                                    [_vm._v("Invocations")]
+                                  )
+                                ])
                               ])
-                            ])
-                          ]
-                        })
-                      ],
-                      2
-                    )
+                            ]
+                          })
+                        ],
+                        2
+                      )
+                    ])
                   ])
                 ]
           ],
@@ -37666,7 +37673,18 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(invocation.status))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(invocation.head))]),
+                              _c("td", [
+                                _c(
+                                  "pre",
+                                  {
+                                    staticStyle: {
+                                      "max-width": "100px",
+                                      "max-height": "30px"
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(invocation.head))]
+                                )
+                              ]),
                               _vm._v(" "),
                               _c("td", [
                                 _c("pre", [_vm._v(_vm._s(invocation.body))])
@@ -50316,8 +50334,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

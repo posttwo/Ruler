@@ -28,7 +28,8 @@
                 selected: 'GenericWebhookProcessor',
                 response: null,
                 options: [
-                    {text: "Generic Webhook", value: "GenericWebhookProcessor"}
+                    {text: "Generic Webhook", value: "GenericWebhookProcessor"},
+                    {text: "Ticket Webhook", value: "TicketWebhookProcessor"}
                 ]
             }
         },
