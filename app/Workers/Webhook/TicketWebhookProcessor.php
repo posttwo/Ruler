@@ -8,36 +8,18 @@ use App\WebhookInvocation;
  */
 class TicketWebhookProcessor extends GenericWebhookProcessor{
 
-    protected $ticketTitle;
-    protected $ticketDescription;
-    protected $ticketProjects = [];
-
-    /**
-     * List of valid actions that rules can take
-     */
-    protected $RULE_ACTIONS = [
-        'setTitle', 'setDescription', 'addProject'
-    ];
-
     public function invoke(WebhookInvocation $invocation){
-        //Grab rules corresponding to invocation webhook
+        $ticket = new \stdClass();
+
+        $rules = $invocation->webhook->rules;
+        foreach($rules as $rule)
+        {
+            $action = app('App\Workers\Webhook\Actions\\' . $rule->action);
+            $ticket = $action->invoke($ticket, $invocation, $rule->config);
+        }
+
+        dd($ticket);
         //dd($invocation);
     }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    public function setDescription($d)
-    {
-        $this->ticketDescription = $d;
-    }
-
-    public function addProject($phid)
-    {
-        $this->ticketProjects[] = $phid;
-    }
-
 
 }

@@ -14,4 +14,9 @@ class Webhook extends Model
     {
         return $this->hasMany('App\WebhookInvocation');
     }
+
+    public function rules()
+    {
+        return $this->hasMany('App\WebhookRule');
+    }
 }

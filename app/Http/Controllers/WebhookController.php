@@ -7,6 +7,7 @@ use App\Webhook;
 use App\WebhookInvocation;
 use App\Enums\WebhookInvocationStatus;
 use App\Jobs\ProcessWebhookInvocation;
+use Illuminate\Support\Arr;
 
 class WebhookController extends Controller
 {
