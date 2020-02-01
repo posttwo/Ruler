@@ -30,12 +30,12 @@ class TicketWebhookProcessor extends GenericWebhookProcessor{
         $this->submitTicket($ticket);
     }
 
-    public function getRules($invocation)
+    protected function getRules(WebhookInvocation $invocation)
     {
         return $invocation->webhook->rules;
     }
 
-    public function submitTicket($ticket)
+    protected function submitTicket($ticket)
     {
         //$result = $this->conduit->callMethodSynchronous('maniphest.edit', $ticket);
         dd($ticket);
