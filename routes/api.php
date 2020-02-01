@@ -22,6 +22,10 @@ Route::middleware('auth')->get('/conduit', 'API\UtilController@whoami');
 //Webhooks
 Route::group(['middleware' => 'auth', 'prefix' => 'webhook'], function () {
     Route::get('/', 'API\WebhookController@index');
-    Route::get('/{webhook}/invocation', 'API\WebhookController@indexInvocations');
     Route::post('/', 'API\WebhookController@store');
+
+    Route::get('/{webhook}/invocation', 'API\WebhookController@indexInvocations');
+
+    Route::get('/{webhook}/rule', 'API\WebhookController@indexRules');
+    Route::post('/{webhook}/rule', 'API\WebhookController@storeRule');
 });

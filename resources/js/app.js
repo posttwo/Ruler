@@ -22,6 +22,8 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('store-webhook-component', require('./components/StoreWebhookComponent.vue').default);
 Vue.component('list-webhooks-component', require('./components/ListWebhooksComponent.vue').default);
+Vue.component('list-webhook-rules-component', require('./components/ListWebhookRulesComponent.vue').default);
+Vue.component('store-webhook-rule-component', require('./components/StoreWebhookRuleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

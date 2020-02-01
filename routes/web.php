@@ -20,5 +20,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Webhook
 Route::group(['middleware' => 'auth', 'prefix' => 'webhook'], function () {
     Route::get('/', 'WebhookController@index');
+    Route::get('/{webhook}/rule', 'WebhookController@indexRules');
 });
 Route::any('/webhook/invoke/{webhook_secret}', 'WebhookController@invoke'); //needs lack of any middleware @TODO except throttling

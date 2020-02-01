@@ -16,6 +16,8 @@ class CreateWebhookRulesTable extends Migration
         Schema::create('webhook_rules', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('webhook_id');
+            $table->string('condition_type')->nullable()->default(null);
+            $table->string('condition_value')->nullable()->default(null);
             $table->string('action');
             $table->jsonb('config');
             $table->timestamps();

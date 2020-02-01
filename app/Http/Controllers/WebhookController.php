@@ -15,6 +15,10 @@ class WebhookController extends Controller
         return view('webhook.index');
     }
 
+    public function indexRules(Webhook $webhook){
+        return view('webhook.rules', ['id' => $webhook->id]);
+    }
+
     public function invoke(Webhook $webhook, Request $request)
     {
         $invocation = new WebhookInvocation;

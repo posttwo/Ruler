@@ -31,7 +31,10 @@
                                         <td>{{webhook.secret}}</td>
                                         <td>{{webhook.type}}</td>
                                         <td>{{webhook.created_at}}</td>
-                                        <td><a href="#" @click.prevent="getinvocations(webhook.id)">Invocations</a></td>
+                                        <td>
+                                            <a href="#" @click.prevent="getinvocations(webhook.id)">Invocations</a><br />
+                                            <a :href="`/webhook/${webhook.id}/rule`">Rules</a>
+                                        </td>
                                     </tr>
                                 </template>
                             </tbody>
@@ -61,11 +64,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <template v-for="invocation in invocations.data">
+                            <template v-for="(invocation, index) in invocations.data">
                                 <tr>
                                     <th scope="row">{{invocation.id}}</th>
                                     <td>{{invocation.status}}</td>
-                                    <td><pre style="max-width: 100px; max-height: 30px;">{{invocation.head}}</pre></td>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary" @click.prevent="showDetails(index)">Details</button>
+                                    </td>
                                     <td><pre>{{invocation.body}}</pre></td>
                                     <td>{{invocation.created_at}}</td>
                                 </tr>
@@ -76,7 +81,33 @@
                 </div>
             </div>
         </div>
+
+        <div v-if="showModal">
+            <transition name="modal">
+                <div class="modal-mask">
+                    <div class="modal-wrapper">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{{modalTitle}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" @click="showModal = false">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <pre>{{modalText}}.</pre>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" @click="showModal = false">Close</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </transition>
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -84,7 +115,10 @@
         data() {
             return {
                 data: null,
-                invocations: null
+                invocations: null,
+                showModal: false,
+                modalTitle: '',
+                modalText: ''
             }
         },
         mounted() {
@@ -100,7 +134,30 @@
             getinvocations(id) {
                 axios.get(`/api/webhook/${id}/invocation`)
                 .then(response => (this.invocations = response))
+            },
+            showDetails(index) {
+                this.modalTitle = this.invocations.data[index].id + " Invocation"
+                this.modalText = this.invocations.data[index].head
+                this.showModal = true
             }
         }
     }
 </script>
+<style scoped>
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+</style>

@@ -29,7 +29,8 @@
                 response: null,
                 options: [
                     {text: "Generic Webhook", value: "GenericWebhookProcessor"},
-                    {text: "Ticket Webhook", value: "TicketWebhookProcessor"}
+                    {text: "Ticket Webhook", value: "TicketWebhookProcessor"},
+                    {text: "Mail Webhook", value: "MailWebhookProcessor"}
                 ]
             }
         },
