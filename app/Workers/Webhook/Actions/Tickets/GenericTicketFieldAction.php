@@ -19,6 +19,10 @@ class GenericTicketFieldAction {
                 'type' => $config['field'],
                 'value' => $title
             ]
+            /*'root_field' => [
+                'name' => 'objectIdentifier',
+                'value' => 'T172'
+            ]*/
         ];
     }
 }

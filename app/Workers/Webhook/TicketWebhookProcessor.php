@@ -16,7 +16,6 @@ class TicketWebhookProcessor extends GenericWebhookProcessor{
     public function invoke(WebhookInvocation $invocation){
         $ticket = [];
         $rules = $this->getRules($invocation);
-
         foreach($rules as $rule)
         {
             $action = app('App\Workers\Webhook\Actions\\' . $rule->action);
@@ -24,6 +23,9 @@ class TicketWebhookProcessor extends GenericWebhookProcessor{
             
             if(isset($response['transaction']))
                 $ticket['transactions'][] = $response['transaction'];
+
+            if(isset($response['root_field']))
+                $ticket[$response['root_field']['name']] = $response['root_field']['value'];
 
         }
 
