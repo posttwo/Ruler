@@ -11,7 +11,8 @@ class MailWebhookProcessor extends TicketWebhookProcessor{
 
     protected function getRules(WebhookInvocation $invocation)
     {
-        return $invocation->webhook->rules;
+        $rules = $invocation->webhook->rules()->where('condition_type', 'field_to')->where('condition_value', $invocation->body['recipient'])->get();
+        return $rules;
     }
 
 }
