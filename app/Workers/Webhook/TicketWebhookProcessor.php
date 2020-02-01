@@ -15,8 +15,8 @@ class TicketWebhookProcessor extends GenericWebhookProcessor{
 
     public function invoke(WebhookInvocation $invocation){
         $ticket = [];
-        $rules = $invocation->webhook->rules;
-        
+        $rules = $this->getRules($invocation);
+
         foreach($rules as $rule)
         {
             $action = app('App\Workers\Webhook\Actions\\' . $rule->action);
@@ -28,14 +28,17 @@ class TicketWebhookProcessor extends GenericWebhookProcessor{
         }
 
         $this->submitTicket($ticket);
+    }
 
-        //dd($invocation);
+    public function getRules($invocation)
+    {
+        return $invocation->webhook->rules;
     }
 
     public function submitTicket($ticket)
     {
-        $result = $this->conduit->callMethodSynchronous('maniphest.edit', $ticket);
-        dd($result);
+        //$result = $this->conduit->callMethodSynchronous('maniphest.edit', $ticket);
+        dd($ticket);
     }
 
 }
