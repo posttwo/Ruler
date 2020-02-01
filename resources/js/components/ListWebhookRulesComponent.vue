@@ -29,7 +29,7 @@
                                <td>{{rule.action}}</td>
                                <td><pre>{{rule.config}}</pre></td>
                                <td>{{rule.condition_type}} : {{rule.condition_value}}</td>
-                               <td>Edit</td>
+                               <td><button class="btn btn-danger" @click.prevent="deleteRule(rule.id)">Delete</button></td>
                             </tr>
                         </template>
                     </tbody>
@@ -57,6 +57,13 @@
                 this.data = null
                 axios.get(`/api/webhook/${this.id}/rule`)
                 .then(response => (this.data = response)) ////////ddd
+            },
+            deleteRule(id){
+                axios.delete(`/api/webhook/${this.id}/rule/${id}`)
+                .then(response => ( this.load() ))
+                .catch(function(response){
+                    alert(response)
+                })
             }
         }
     }

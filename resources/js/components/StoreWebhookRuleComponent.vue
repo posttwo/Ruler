@@ -29,7 +29,7 @@
         data() {
             return {
                 selected: '',
-                config: 'test',
+                config: '',
                 conditionType: '',
                 conditionValue: '',
                 response: null,

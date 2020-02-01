@@ -52,8 +52,8 @@ class WebhookController extends Controller
                 Rule::in(['Tickets\GenericTicketFieldAction']),
             ],
             'config' => 'json',
-            'conditionType' => 'string',
-            'conditionValue' => 'string'
+            'conditionType' => 'string|nullable',
+            'conditionValue' => 'string|nullable'
         ]);
         $rule = new WebhookRule;
         $rule->config = json_decode($data['config']); ///omg
@@ -65,5 +65,11 @@ class WebhookController extends Controller
         $rule->save();
         return $rule;
 
+    }
+
+    public function deleteRule(Webhook $webhook, WebhookRule $rule)
+    {
+        $rule->delete();
+        return "Eat a fish";
     }
 }

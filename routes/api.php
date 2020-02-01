@@ -28,4 +28,5 @@ Route::group(['middleware' => 'auth', 'prefix' => 'webhook'], function () {
 
     Route::get('/{webhook}/rule', 'API\WebhookController@indexRules');
     Route::post('/{webhook}/rule', 'API\WebhookController@storeRule');
+    Route::delete('/{webhook}/rule/{rule}', 'API\WebhookController@deleteRule');
 });

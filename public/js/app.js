@@ -2016,6 +2016,15 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/webhook/".concat(this.id, "/rule")).then(function (response) {
         return _this.data = response;
       }); ////////ddd
+    },
+    deleteRule: function deleteRule(id) {
+      var _this2 = this;
+
+      axios["delete"]("/api/webhook/".concat(this.id, "/rule/").concat(id)).then(function (response) {
+        return _this2.load();
+      })["catch"](function (response) {
+        alert(response);
+      });
     }
   }
 });
@@ -2290,7 +2299,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       selected: '',
-      config: 'test',
+      config: '',
       conditionType: '',
       conditionValue: '',
       response: null,
@@ -38500,7 +38509,21 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("Edit")])
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.deleteRule(rule.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Delete")]
+                              )
+                            ])
                           ])
                         ]
                       })
