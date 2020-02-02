@@ -30,3 +30,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'webhook'], function () {
     Route::post('/{webhook}/rule', 'API\WebhookController@storeRule');
     Route::delete('/{webhook}/rule/{rule}', 'API\WebhookController@deleteRule');
 });
+
+Route::group(['middleware' => 'auth', 'prefix' => 'quicklink'], function () {
+    Route::get('/', 'API\QuicklinkController@index');
+    Route::post('/', 'API\QuicklinkController@store');
+    Route::delete('/{quicklink}', 'API\QuicklinkController@delete');
+});
+Route::get('/quicklink/{quicklink}', 'API\QuicklinkController@view');

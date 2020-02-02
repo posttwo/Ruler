@@ -23,3 +23,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'webhook'], function () {
     Route::get('/{webhook}/rule', 'WebhookController@indexRules');
 });
 Route::any('/webhook/invoke/{webhook_secret}', 'WebhookController@invoke'); //needs lack of any middleware @TODO except throttling
+
+Route::group(['middleware' => 'auth', 'prefix' => 'quicklink'], function () {
+    Route::get('/', 'QuicklinkController@index');
+});
+
+Route::get('/q/{quicklink}/{any}', 'QuicklinkController@invoke');

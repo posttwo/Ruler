@@ -6,7 +6,7 @@ class ConduitService{
 
     public function __construct() {
         $this->client = new \ConduitClient("https://p.mongla.net");
-        $this->client->setConduitToken(env('CONDUIT_API_KEY', '')); //@TODO REMOVE [SECURITY]
+        $this->client->setConduitToken(env('CONDUIT_API_KEY')); //@TODO REMOVE [SECURITY]
     }
 
     public function __call($method, $args) {

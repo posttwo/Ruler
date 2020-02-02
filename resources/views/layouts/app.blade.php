@@ -45,6 +45,9 @@
                                     <a class="dropdown-item" href="/home">
                                         WhoAMI
                                     </a>
+                                    <a class="dropdown-item" href="/quicklink">
+                                        Quicklinks
+                                    </a>
                                 </div>
                         </li>
                     </ul>
