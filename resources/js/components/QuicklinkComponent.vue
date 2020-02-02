@@ -6,8 +6,8 @@
 
             <div class="card-body">
                 <div class="alert alert-success" role="alert" v-if="response != null">
-                    <strong>Quacklink Daily</strong> <br />
-                    Config: <pre>{{response.data}}</pre> <br />
+                    <strong>Success</strong> <br />
+                    Response: <pre>{{response.data}}</pre> <br />
                     <button class="btn btn-light" @click.prevent="closeSecret">Close</button>
                 </div>
                 Title: <input type="text" class="form-control" v-model="title"> <br />

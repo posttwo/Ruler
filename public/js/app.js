@@ -39359,10 +39359,10 @@ var render = function() {
                     attrs: { role: "alert" }
                   },
                   [
-                    _c("strong", [_vm._v("Quacklink Daily")]),
+                    _c("strong", [_vm._v("Success")]),
                     _vm._v(" "),
                     _c("br"),
-                    _vm._v("\n                Config: "),
+                    _vm._v("\n                Response: "),
                     _c("pre", [_vm._v(_vm._s(_vm.response.data))]),
                     _vm._v(" "),
                     _c("br"),
