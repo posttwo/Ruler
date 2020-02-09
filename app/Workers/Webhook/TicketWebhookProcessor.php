@@ -19,6 +19,10 @@ class TicketWebhookProcessor extends GenericWebhookProcessor{
         $rules = $this->getRules($invocation);
         foreach($rules as $rule)
         {
+
+            if($rule->condition_type == 'field_to' && isset($invocation->body['rcpt_to']) && $rule->condition_value != $invocation->body['rcpt_to']) //rcpt_to
+                continue;
+
             $action = app('App\Workers\Webhook\Actions\\' . $rule->action);
             $response = $action->invoke($ticket, $invocation, $rule->config);
             
@@ -30,7 +34,7 @@ class TicketWebhookProcessor extends GenericWebhookProcessor{
                 $ticket[$response['root_field']['name']] = $response['root_field']['value'];
 
         }
-
+        dd($ticket);
         $this->submitTicket($ticket);
     }
 
