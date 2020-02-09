@@ -2548,6 +2548,9 @@ __webpack_require__.r(__webpack_exports__);
       options: [{
         text: "Set Generic Ticket Field",
         value: "Tickets\\GenericTicketFieldAction"
+      }, {
+        text: "Daft Formatter",
+        value: "Tickets\\DaftTicketFormatter"
       }]
     };
   },

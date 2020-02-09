@@ -34,7 +34,8 @@
                 conditionValue: '',
                 response: null,
                 options: [
-                    {text: "Set Generic Ticket Field", value: "Tickets\\GenericTicketFieldAction"}
+                    {text: "Set Generic Ticket Field", value: "Tickets\\GenericTicketFieldAction"},
+                    {text: "Daft Formatter", value: "Tickets\\DaftTicketFormatter"}
                 ]
             }
         },

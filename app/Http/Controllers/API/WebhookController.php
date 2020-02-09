@@ -49,7 +49,8 @@ class WebhookController extends Controller
         $data = $request->validate([
             'type' => [
                 'required',
-                Rule::in(['Tickets\GenericTicketFieldAction']),
+                Rule::in(['Tickets\GenericTicketFieldAction',
+                'Tickets\DaftTicketFormatter']),
             ],
             'config' => 'json',
             'conditionType' => 'string|nullable',

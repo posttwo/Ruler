@@ -15,14 +15,16 @@ class TicketWebhookProcessor extends GenericWebhookProcessor{
 
     public function invoke(WebhookInvocation $invocation){
         $ticket = [];
+        $ticket['transactions'] = [];
         $rules = $this->getRules($invocation);
         foreach($rules as $rule)
         {
             $action = app('App\Workers\Webhook\Actions\\' . $rule->action);
             $response = $action->invoke($ticket, $invocation, $rule->config);
             
-            if(isset($response['transaction']))
-                $ticket['transactions'][] = $response['transaction'];
+            if(isset($response['transactions'])){
+                $ticket['transactions'] = array_merge($ticket['transactions'], $response['transactions']);
+            }
 
             if(isset($response['root_field']))
                 $ticket[$response['root_field']['name']] = $response['root_field']['value'];

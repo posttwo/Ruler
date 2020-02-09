@@ -15,9 +15,11 @@ class GenericTicketFieldAction {
 
         return 
         [
-            'transaction' => [
-                'type' => $config['field'],
-                'value' => $title
+            'transactions' => [
+                [
+                    'type' => $config['field'],
+                    'value' => $title
+                ]
             ]
             /*'root_field' => [
                 'name' => 'objectIdentifier',
