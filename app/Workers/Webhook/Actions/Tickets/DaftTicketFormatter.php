@@ -41,10 +41,10 @@ class DaftTicketFormatter {
 
         //Find other details
         $a = explode("\n", $plain);
-        $link = $a[18];
-        $bedrooms = $a[26];
+        $link = $a[17];
+        $bedrooms = $a[25];
         $bedrooms = substr($bedrooms, 0, strpos($bedrooms, "Bath") + 4);
-        $location = $a[23];
+        $location = $a[22];
 
 
         $title = "[€{$price}] - {$bedrooms} | {$location}";
