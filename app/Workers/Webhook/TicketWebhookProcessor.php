@@ -34,7 +34,6 @@ class TicketWebhookProcessor extends GenericWebhookProcessor{
                 $ticket[$response['root_field']['name']] = $response['root_field']['value'];
 
         }
-        dd($ticket);
         $this->submitTicket($ticket);
     }
 
