@@ -35,16 +35,16 @@ class DaftTicketFormatter {
         }
 
         //Find Price
-        $a = $dom->find('title')->text;
+        $a = $invocation->body['subject'];
         $a = (int) filter_var($a, FILTER_SANITIZE_NUMBER_INT);
-        $price = substr($a, 3);
+        $price = $a;
 
         //Find other details
         $a = explode("\n", $plain);
-        $link = $a[2];
-        $bedrooms = $a[7];
+        $link = $a[18];
+        $bedrooms = $a[26];
         $bedrooms = substr($bedrooms, 0, strpos($bedrooms, "Bath") + 4);
-        $location = $a[6];
+        $location = $a[23];
 
 
         $title = "[€{$price}] - {$bedrooms} | {$location}";
