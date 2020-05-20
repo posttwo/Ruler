@@ -23,7 +23,12 @@ class WebhookController extends Controller
     {
         $invocation = new WebhookInvocation;
         $invocation->head = $request->headers->all();
-        $invocation->body = $request->all();
+	
+	$json = json_decode(file_get_contents('php://input'), true);
+        $json = collect($json);
+        $invocation->body = $json;
+        if($json->isEmpty())
+            $invocation->body = $request->all();
         $invocation->status = WebhookInvocationStatus::ADDED;
         $invocation->webhook()->associate($webhook);
         $invocation->save();
