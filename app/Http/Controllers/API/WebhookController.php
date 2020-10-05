@@ -19,7 +19,7 @@ class WebhookController extends Controller
 
     public function indexInvocations(Webhook $webhook)
     {
-        return $webhook->invocations()->orderBy('id', 'desc')->get();
+        return $webhook->invocations()->orderBy('id', 'desc')->limit(50)->get();
     }
 
     public function indexRules(Webhook $webhook)
