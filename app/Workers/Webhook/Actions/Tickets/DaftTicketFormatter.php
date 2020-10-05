@@ -15,39 +15,39 @@ class DaftTicketFormatter {
         $imageSrc = null;
         $price = null;
         $bedrooms = null;
+        $bathrooms = null;
         $link = null;
         $location = null;
 
-        $html = str_replace('3D"', '"', $body['html_body']);
-        $html = str_replace('=3D=', '=', $html);
-        $html = str_replace('=3D', '=', $html);
         $dom = new Dom;
-        $dom->load($html);
+        $dom->load($body['html_body']);
         $a = $dom->find('img');
 
-        //Find Main Image
+        //Find Main Image and Link
         foreach($a as $img){
             $src = $img->getAttribute('src');
             if(strpos($src, 'https://photos.cdn.dsch.ie/') === 0){
                 $src = str_replace('= ', "", $src);
                 $imageSrc = $src;
+                $link = $img->getParent()->getAttribute('href');
             }
         }
+
+        //Find Address
+        $location = $dom->find('td .address > div > a')[0]->innerHtml;
+
+        //Find Bed + Bath
+        $parentInfoTable = $dom->find('td .address')[0]->getParent()->getParent()->find('tr');
+        $interestingData = $parentInfoTable[4]->find('table > tr > td > table > tr');
+        $bedrooms = $interestingData[0]->find('td')[0]->innerHtml;
+        $bathrooms = $interestingData[0]->find('td')[1]->innerHtml;
 
         //Find Price
         $a = $invocation->body['subject'];
         $a = (int) filter_var($a, FILTER_SANITIZE_NUMBER_INT);
-        $price = $a;
+        $price = abs($a);
 
-        //Find other details
-        $a = explode("\n", $plain);
-        $link = $a[17];
-        $bedrooms = $a[25];
-        $bedrooms = substr($bedrooms, 0, strpos($bedrooms, "Bath") + 4);
-        $location = $a[22];
-
-
-        $title = "[€{$price}] - {$bedrooms} | {$location}";
+        $title = "[€{$price}] - {$bedrooms} {$bathrooms} | {$location}";
         $body = "== {$location} \n\r";
         $body .= "{image {$imageSrc}} \n\r";
         $body .= "**View: ** {$link} \n\r";
