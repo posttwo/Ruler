@@ -49,7 +49,6 @@ class DaftTicketFormatter {
 
         $title = "[€{$price}] - {$bedrooms} {$bathrooms} | {$location}";
         $body = "== {$location} \n\r";
-        $body .= "{image {$imageSrc}} \n\r";
         $body .= "**View: ** {$link} \n\r";
         $body .= "**Bedrooms: **{$bedrooms} \n\r";
         $body .= "**Price: ** {$price}";
