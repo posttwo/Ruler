@@ -26,7 +26,7 @@ class DaftTicketFormatter {
         //Find Main Image and Link
         foreach($a as $img){
             $src = $img->getAttribute('src');
-            if(strpos($src, 'https://photos.cdn.dsch.ie/') === 0){
+            if(strpos($src, 'https://media.daft.ie/') === 0){
                 $src = str_replace('= ', "", $src);
                 $imageSrc = $src;
                 $link = $img->getParent()->getAttribute('href');
