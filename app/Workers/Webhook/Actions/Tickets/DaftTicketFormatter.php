@@ -34,7 +34,7 @@ class DaftTicketFormatter {
         }
 
         //Find Address
-        $location = $dom->find('td .address > div > a')[0]->innerHtml;
+        $location = $dom->find('td .address > div')[0]->innerHtml;
 
         //Find Bed + Bath
         $parentInfoTable = $dom->find('td .address')[0]->getParent()->getParent()->find('tr');
